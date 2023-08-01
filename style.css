@@ -1,0 +1,17 @@
+.footer {
+    grid-column: 1 / span 2;
+    justify-self: center;
+    gap: 10px;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.fa-github {
+    color: black;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+}
