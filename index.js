@@ -63,12 +63,23 @@ function addBookToDisplay(book) {
         let div = document.createElement('div');
         div.classList += c;
         div.textContent = book[c];
-        console.log(book[c]);
-        console.log(book.title);
         newBook.appendChild(div);
     });
     formatBook(newBook);
+    newBook.children[3].addEventListener('click', s => {
+        s.target.textContent = changeStatus(s.target.textContent);
+    });
     books.appendChild(newBook);
+}
+
+function changeStatus(status) {
+    switch(status) {
+        case 'Unopened': return 'Opened';
+        case 'Opened': return 'Read';
+        case 'Read': return 'Unopened';
+        default: return 'Unexpected Status';
+    }
+
 }
 
 let b1 = new Book('The Poop that Took a Pee', 'Butters', 120, 'Read');
@@ -91,8 +102,15 @@ addBtn.addEventListener('click' , () => {
     for(let pair of val) {
         args.push(pair[1]);
     }
-    let newB = new Book(...args);
-    //bookMenu.reset();
+
+    bookMenu.reportValidity();
+    
+    if(bookMenu.checkValidity()) {
+        let newB = new Book(...args);
+        bookMenu.reset();
+        bookMenu.style.display ='none';
+    }
+    
 });
 
 bookMenu.addEventListener('submit', e => {
