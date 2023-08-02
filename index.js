@@ -10,12 +10,14 @@ let cnlBtn = document.querySelector('.cancel');
 
 let addBtn = document.querySelector('.add-book');
 
+let sortBtn = document.querySelector('.sort-books');
+
 let colors = ['--book-color-1','--book-color-2','--book-color-3','--book-color-4'];
 
 let statuses = ['Unopened', 'Opened', 'Read'];
 
 let formatBook = b => {
-    let color = colors[Math.floor(Math.random()*4)];
+    let color = library[b.getAttribute('index')].color;
     b.style.background = `var(${color})`;
     console.log(b.children[3]);
     b.children[3].style.background = `var(${color})`;
@@ -38,12 +40,14 @@ class Book {
     constructor(title, author, pages, status) {
         this.title = title;
         this.author = author;
-        this.pages = `Pgs: ${pages}`;
+        this.pages = pages;
         if(statuses.includes(status)) {
             this.status = status;
         } else {
             console.log('Expected a status');
         }
+        this.color = colors[Math.floor(Math.random()*4)];
+        console.log(this.color);
         this.addBookToLibrary();
     }
 
@@ -63,7 +67,8 @@ function addBookToDisplay(book, index) {
     classes.forEach(c => {
         let div = document.createElement('div');
         div.classList += c;
-        div.textContent = book[c];
+        c == 'pages' ? div.textContent = `Pgs: ${book[c]}`: div.textContent = book[c];
+        
         newBook.appendChild(div);
     });
 
@@ -77,6 +82,10 @@ function addBookToDisplay(book, index) {
     
     trash.addEventListener('click', t => {
         library.splice(index);
+        Array.from(books.children).forEach(b => {
+            let idx = b.getAttribute('index');
+            if(idx > index) b.setAttribute('index', idx - 1);
+        })
         newBook.remove();
         lookMode();
     });
@@ -160,3 +169,9 @@ function lookMode() {
     rmvBtn.style.background = 'whitesmoke';
     rmvBtn.style.color = 'rgb(46, 46, 46)';
 }
+
+sortBtn.addEventListener('click', () => {
+    library = library.sort( (a,b) => a.pages > b.pages ? 1 : -1);
+    Array.from(books.children).forEach(c => c.remove());
+    library.forEach( l => addBookToDisplay(l, library.indexOf(l)));
+});
