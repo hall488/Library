@@ -1,17 +1,166 @@
-.footer {
-    grid-column: 1 / span 2;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+:root {
+    --book-color-1: #C4A484;
+    --book-color-2: #247974;
+    --book-color-3: #7a2525;
+    --book-color-4: #274a66;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(img/library-with-round-window-bookcase-with-bookcase-left.jpg);
+    background-size: contain; 
+
+}
+
+.header {
+    padding: 32px;
+    font-size: 48px;
+    background-color:rgb(54, 14, 14);
+    color: whitesmoke;
+    text-align: center;
+    box-shadow: 0px 5px 5px wheat;
+    position: relative;
+}
+
+.book-container {
+    flex: 1;
+    padding-top: 64px;
+    width: 70%;
+    justify-content: center;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    margin: 0;
+    padding: 0;
+    gap: 32px;
+    place-content: center;
+}
+
+.book {
+    list-style-type: none;
+    display: grid;
+    grid-template: 1fr 3fr 1fr/ 1fr 1fr;
+    padding: 16px;
+    padding-top: 48px;
+    gap: 8px;
+    background-color: var(--book-color-3);
+    box-shadow:
+        2px -2px 0 0 whitesmoke,
+        0px -2px 0 0 var(--book-color-3),
+        4px -4px 0 0 wheat,
+        2px -4px 0 0 var(--book-color-3),
+        6px -6px 0 0 whitesmoke,
+        4px -6px 0 0 var(--book-color-3),
+        8px -8px 0 0 wheat,
+        6px -8px 0 0 var(--book-color-3),
+        8px -10px 0 0 var(--book-color-3),
+        10px -10px 0 0 var(--book-color-3);
+}
+
+li>div {
+    font-size: 18px;
+    color: whitesmoke;
+}
+
+.title, .author {
     justify-self: center;
+    grid-column: 1 / span 2;
+}
+
+.pages {
+    padding: 8px;
+}
+
+.status {
+    justify-self: end;
+    border-radius: 8px;
+    padding:8px;
+}
+
+.status:hover{
+    filter: brightness(80%);
+}
+
+.actions-container {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 32px;
+}
+
+.new-book, .remove-book {
+    background-color: whitesmoke;
+    color:rgb(46, 46, 46);
+    padding: 8px 16px;
+    border-radius: 16px;
+    list-style-type: none;
+}
+
+
+
+.footer {
+    box-shadow: 0px -5px 5px wheat;
+    position: relative;
+    background-color:rgb(54, 14, 14);
+    color:whitesmoke;
     gap: 10px;
     padding: 20px;
     font-size: 20px;
+    text-align: center;
+    margin-bottom: auto;
 }
 
 .fa-github {
-    color: black;
+    color: whitesmoke;
     font-size: 24px;
     transition: transform 0.3s ease-in-out;
 }
 
 .fa-github:hover {
     transform: rotate(360deg) scale(1.2);
+}
+
+.book-menu {
+    display: none;
+    position: fixed;
+    left: 25%;
+    top: 25%;
+    right: 25%;
+    flex-direction: column;
+    background-color: whitesmoke;
+    padding: 16px;
+    gap: 8px;
+    border-radius: 16px;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+button {
+    width: 100px;
 }

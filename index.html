@@ -4,42 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/eedd958231.js" crossorigin="anonymous"></script>
     <title>Library</title>
 </head>
 <body>
+    <div class="header">
+        Library
+    </div>
     <div class="container">
-        <div class="header">
-            Library
-        </div>
+    
         <div class="book-container">
             <ul class="books">
-                <li class="book">
-                    <div class="title">Everybody Poops</div>
-                    <div class="author">Stinky Mcstinkers</div>
-                    <div class="pages">Pgs: 100</div>
-                    <div class="status">Read</div>
-                </li>
-                <li class="book">
-                    <div class="title">Whoza Wooza</div>
-                    <div class="author">Willy Wowzers</div>
-                    <div class="pages">Pgs: 153</div>
-                    <div class="status">Opened</div>
-                </li>
-                <li class="book">
-                    <div class="title">Silly Billy</div>
-                    <div class="author">Billy Billertons</div>
-                    <div class="pages">Pgs: 54</div>
-                    <div class="status">Unopened</div>
-                </li>
+                
             </ul>
         </div>
-        <div class="actions-container"></div>
-        <div class="footer">Christopher Hall © 2023
-            <a href="https://github.com/hall488" target="_blank">
-                <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
-        </div>
+        <ul class="actions-container">
+            <li class="new-book">New Book</li>
+            <li class="remove-book">Remove Book</li>
+        </ul>
+    
     </div>
+    <div class="footer">Christopher Hall © 2023
+        <a href="https://github.com/hall488" target="_blank">
+            <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <form class="book-menu">
+        New Book
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required>
+        <label for="author">Author</label>
+        <input type="text" name="author" id="author" required>
+        <label for="pages">Pages</label>
+        <input type="number" name="pages" id="pages" required>
+        <label for="status">Status</label>
+        <select name="status" id="status" required>
+            <option value="Unopened">Unopened</option>
+            <option value="Opened">Opened</option>
+            <option value="Read">Read</option>
+        </select>
+        <div class="btns">
+            <button type="button" class="add-book">Add Book</button>
+            <button type="button" class="cancel">Cancel</button>
+        </div>
+    </form>
+
     <script src="index.js"></script>
 </body>
 </html>
