@@ -52,11 +52,12 @@ class Book {
 
 library.push = function() {
     Array.prototype.push.apply(this, arguments);
-    addBookToDisplay(arguments[0]);
+    addBookToDisplay(arguments[0], library.length - 1);
 }
 
-function addBookToDisplay(book) {
+function addBookToDisplay(book, index) {
     let newBook = document.createElement('li');
+    newBook.setAttribute('index', index);
     newBook.classList += 'book';
     let classes = ['title', 'author', 'pages', 'status'];
     classes.forEach(c => {
@@ -65,6 +66,21 @@ function addBookToDisplay(book) {
         div.textContent = book[c];
         newBook.appendChild(div);
     });
+
+    let tContainer = document.createElement('div');
+    tContainer.classList += 'tContainer';
+    let trash = document.createElement('i');
+    trash.classList.add('fa-solid','fa-trash');
+    trash.style.display = 'none';
+    tContainer.appendChild(trash);
+    newBook.appendChild(tContainer);
+    
+    trash.addEventListener('click', t => {
+        library.splice(index);
+        newBook.remove();
+        lookMode();
+    });
+
     formatBook(newBook);
     newBook.children[3].addEventListener('click', s => {
         s.target.textContent = changeStatus(s.target.textContent);
@@ -116,3 +132,31 @@ addBtn.addEventListener('click' , () => {
 bookMenu.addEventListener('submit', e => {
     e.preventDefault();
 });
+
+rmvBtn.addEventListener('click', () => {
+
+    if(rmvBtn.textContent == 'Remove Book'){
+        removeMode();
+    } else {
+        lookMode();
+    }
+        
+});
+
+function removeMode() {
+    Array.from(books.children).forEach(c => {
+        c.children[4].children[0].style.display = 'flex';
+    });
+    rmvBtn.textContent = 'Cancel';
+    rmvBtn.style.background = 'crimson';
+    rmvBtn.style.color = 'whitesmoke';
+}
+
+function lookMode() {
+    Array.from(books.children).forEach(c => {
+        c.children[4].children[0].style.display = 'none';
+    });
+    rmvBtn.textContent = 'Remove Book';
+    rmvBtn.style.background = 'whitesmoke';
+    rmvBtn.style.color = 'rgb(46, 46, 46)';
+}

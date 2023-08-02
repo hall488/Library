@@ -164,3 +164,17 @@ li>div {
 button {
     width: 100px;
 }
+
+.tContainer {
+    display: flex;
+    position: relative;
+    top: -100px;
+    grid-column: 1 / span 2;
+    justify-content: center;
+}
+
+.fa-solid, .fa-trash {
+    font-size: 24px;
+    position: absolute;
+    justify-content: center;
+}
